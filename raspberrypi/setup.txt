@@ -1,0 +1,28 @@
+sudo su -
+
+# 初期セットアップ
+apt update 
+apt upgrade
+apt install -y dnsutils snapd
+snap install core snap-store
+echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
+sysctl -p
+
+# AdguardHomeセットアップ
+snap install adguard-home
+########################
+### 以下URLを開いてAdguardのセットアップ
+## http://raspberrypi.local:3000/
+### アップストリームDNSサーバー
+## https://cloudflare-dns.com/dns-query
+## https://dns.google/dns-query
+## https://unfiltered.adguard-dns.com/dns-query
+## https://dns10.quad9.net/dns-query
+########################
+
+# tailscaleセットアップ
+curl -fsSL https://tailscale.com/install.sh | sh
+tailscale up --advertise-routes=192.168.1.0/24
+
+# OpenMediaVaultセットアップ
+wget -O - https://github.com/OpenMediaVault-Plugin-Developers/installScript/raw/master/install | sudo bash
