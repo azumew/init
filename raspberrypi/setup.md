@@ -18,13 +18,12 @@ exit
 wget -O - https://github.com/OpenMediaVault-Plugin-Developers/installScript/raw/master/install | sudo bash
 ```
 1. 勝手に再起動されるので初期設定に移る
-- URL: http://raspberrypi.local
-- ID: admin
-- PASS: openmediavault
-
+   - URL: http://raspberrypi.local
+   - ID: admin
+   - PASS: openmediavault
 2. omv-extrasから「openmediavault-compose」をインストール
 3. サービス→Compose→Filesから「Portainer」をインストール
-- 参考：https://saturday-in-the-park.netlify.app/AlpineLinux/Openmediavault/
+   - 参考：https://saturday-in-the-park.netlify.app/AlpineLinux/Openmediavault/
 
 ## DNS設定変更
 ```
@@ -71,10 +70,11 @@ systemctl restart systemd-resolved
 
 ## AdguardHomeセットアップ
 1. portainerからadguard-homeコンテナを起動
-- raspberrypi/docker/adguard-home.yml
+   - http://raspberrypi.local:9000/
+   - Dockerfile：raspberrypi/docker/adguard-home.yml
 
 2. 起動後以下URLにアクセスしセットアップ
-- http://raspberrypi.local:9000/
+- http://raspberrypi.local:3000/
 
 ### アップストリームDNSサーバー
 ```
