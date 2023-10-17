@@ -2,14 +2,26 @@ sudo su -
 
 # 初期セットアップ
 apt update 
-apt upgrade
+apt upgrade -y
 apt install -y dnsutils snapd
 snap install core snap-store
 echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf
 sysctl -p
+exit
+
+# OpenMediaVaultセットアップ
+wget -O - https://github.com/OpenMediaVault-Plugin-Developers/installScript/raw/master/install | sudo bash
+########################
+### 再起動がかかればインストール完了
+### URL:http://raspberrypi.local
+### ID: admin
+### PASS: openmediavault
+### omv-extrasから「openmediavault-compose」をインストール
+########################
+
 
 # AdguardHomeセットアップ
-snap install adguard-home
+sudo snap install adguard-home
 ########################
 ### 以下URLを開いてAdguardのセットアップ
 ## http://raspberrypi.local:3000/
@@ -24,5 +36,3 @@ snap install adguard-home
 curl -fsSL https://tailscale.com/install.sh | sh
 tailscale up --advertise-routes=192.168.1.0/24
 
-# OpenMediaVaultセットアップ
-wget -O - https://github.com/OpenMediaVault-Plugin-Developers/installScript/raw/master/install | sudo bash
